@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ItemModal from "../ItemModal/ItemModal";
 import { useState } from "react";
 
 function App() {
@@ -12,17 +13,25 @@ function App() {
     day: "numeric",
   });
   const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
+
   const handleCreateModal = () => {
     setActiveModal("create");
   };
   const handleCloseModal = () => {
     setActiveModal("");
+    setSelectedCard({});
   };
+  const handleSelectedCard = (card) => {
+    setActiveModal("preview");
+    setSelectedCard(card);
+  };
+  // console.log(selectedCard);
 
   return (
     <div>
       <Header date={currentDate} onCreateModal={handleCreateModal} />
-      <Main temp={temp} />
+      <Main temp={temp} onSelectCard={handleSelectedCard} />
       {activeModal === "create" && (
         <ModalWithForm title="New Garment" onClose={handleCloseModal}>
           <label>
@@ -47,6 +56,9 @@ function App() {
             </div>
           </div>
         </ModalWithForm>
+      )}
+      {activeModal === "preview" && (
+        <ItemModal card={selectedCard} onClose={handleCloseModal} />
       )}
       <Footer />
     </div>
