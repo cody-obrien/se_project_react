@@ -59,14 +59,14 @@ const weatherOptions = [
   },
 ];
 
-export default function WeatherCard({ day, type, temp }) {
+export default function WeatherCard({ day, type, temperature }) {
   const weatherSrc = weatherOptions.filter((i) => {
     return i.day === day && i.type === type;
   });
 
   return (
     <section className="weather" id="weather">
-      <div className="weather__info">{temp}</div>
+      <div className="weather__info">{temperature}°F</div>
       <img
         className="weather__image"
         src={weatherSrc[0].url}
