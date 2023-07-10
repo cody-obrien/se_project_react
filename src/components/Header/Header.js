@@ -5,7 +5,7 @@ export default function Header() {
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src="./images/logo.svg" alt="WTWR Logo" />
+          <img src={require("../../images/logo.svg").default} alt="WTWR Logo" />
         </div>
         <div>Date</div>
       </div>
@@ -15,7 +15,10 @@ export default function Header() {
         </div>
         <div>UserName</div>
         <div>
-          <img src="./images/avatar.svg" alt="User Avatar" />
+          <img
+            src={require("../../images/avatar.svg").default}
+            alt="User Avatar"
+          />
         </div>
       </div>
     </header>
