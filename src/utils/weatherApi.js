@@ -17,7 +17,7 @@ function getWeatherForecast() {
 }
 
 function parseWeatherData(data) {
-  console.log(data);
+  // console.log(data);
   return { temperature: Math.ceil(data.main.temp), location: data.name };
 }
 

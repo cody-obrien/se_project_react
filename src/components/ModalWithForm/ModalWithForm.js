@@ -13,7 +13,7 @@ export default function ModalWithForm({
           Close
         </button>
         <h3>{title}</h3>
-        <form>{children}</form>
+        <form className="modal__form">{children}</form>
         <button type="submit">{buttonText}</button>
       </div>
     </div>

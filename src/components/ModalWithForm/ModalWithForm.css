@@ -17,3 +17,19 @@
   border-radius: 20px;
   padding: 28px 28px;
 }
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.modal__input {
+  border: none;
+  border-bottom: rgba(0, 0, 0, 1) solid 1px;
+}

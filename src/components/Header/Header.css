@@ -23,4 +23,12 @@
 
 .header__button {
   cursor: pointer;
+  border: none;
+  background-color: white;
+  transition: opacity 0.2s linear;
+  font-weight: 700;
+}
+
+.header__button:hover {
+  opacity: 0.5;
 }
