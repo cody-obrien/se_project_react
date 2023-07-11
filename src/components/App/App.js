@@ -50,26 +50,55 @@ function App() {
       {activeModal === "create" && (
         <ModalWithForm title="New Garment" onClose={handleCloseModal}>
           <div className="modal__input-container">
-            <label for="name">Name</label>
-            <input className="modal__input" type="text" name="name"></input>
+            <label htmlFor="name">Name</label>
+            <input
+              className="modal__input"
+              type="text"
+              name="name"
+              placeholder="Name"
+            ></input>
           </div>
           <div className="modal__input-container">
-            <label for="link">Image URL</label>
-            <input className="modal__input" type="url" name="link"></input>
+            <label htmlFor="link">Image URL</label>
+            <input
+              className="modal__input"
+              type="url"
+              name="link"
+              placeholder="Image URL"
+            ></input>
           </div>
-          <p>Select the weather type</p>
+          <span>Select the weather type:</span>
           <div>
             <div>
-              <input type="radio" id="hot" value="hot" />
-              <label>Hot</label>
+              <input
+                className="modal__radio-button"
+                type="radio"
+                id="hot"
+                value="hot"
+                name="weatherType"
+              />
+              <label htmlFor="hot">Hot</label>
             </div>
             <div>
-              <input type="radio" id="warm" value="warm" />
-              <label>Warm</label>
+              <input
+                className="modal__radio-button"
+                type="radio"
+                id="warm"
+                value="warm"
+                name="weatherType"
+              />
+
+              <label htmlFor="warm">Warm</label>
             </div>
             <div>
-              <input type="radio" id="cold" value="cold" />
-              <label>Cold</label>
+              <input
+                className="modal__radio-button"
+                type="radio"
+                id="cold"
+                value="cold"
+                name="weatherType"
+              />
+              <label htmlFor="cold">Cold</label>
             </div>
           </div>
         </ModalWithForm>
