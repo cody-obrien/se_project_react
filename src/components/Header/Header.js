@@ -1,18 +1,24 @@
 import "./Header.css";
 
-export default function Header({ date, onCreateModal }) {
+export default function Header({ date, location, onCreateModal }) {
   return (
     <header className="header">
       <div className="header__logo">
         <div>
           <img src={require("../../images/logo.svg").default} alt="WTWR Logo" />
         </div>
-        <div>{date}</div>
+        <div>
+          {date}, {location}
+        </div>
       </div>
       <div className="header__avatar-logo">
         <div>
-          <button onClick={onCreateModal} type="text">
-            Add New Clothes
+          <button
+            onClick={onCreateModal}
+            type="text"
+            className="header__button"
+          >
+            + Add clothes
           </button>
         </div>
         <div>Terrence Tegegne</div>

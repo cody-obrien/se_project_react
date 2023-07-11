@@ -1,0 +1,6 @@
+@import url(../../vendor/normalize.css);
+@import url(../../vendor/fonts.css);
+
+.app {
+  font-family: "Cabinet Grotesk Regular", sans-serif;
+}

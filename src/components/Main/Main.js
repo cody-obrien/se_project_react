@@ -20,7 +20,7 @@ export default function Main({ temperature, onSelectCard }) {
     // console.log(item);
     return item.weather.toLowerCase() === weatherType;
   });
-  console.log(filteredCards);
+  // console.log(filteredCards);
 
   return (
     <main className="main">
