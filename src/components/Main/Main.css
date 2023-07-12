@@ -4,3 +4,8 @@
   font-size: 20px;
   line-height: 25px;
 }
+
+.card__section {
+  display: flex;
+  justify-content: center;
+}

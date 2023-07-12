@@ -22,8 +22,8 @@ export default function Main({ temperature, onSelectCard }) {
   return (
     <main className="main">
       <WeatherCard day={true} type={"sunny"} temperature={temperature} />
+      <div>Today is {temperature}°F / You may want to wear:</div>
       <section className="card__section" id="card-section">
-        Today is {temperature}°F / You may want to wear:
         <div className="card__items">
           {filteredCards.map((item) => {
             return (

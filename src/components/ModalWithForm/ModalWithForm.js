@@ -16,7 +16,9 @@ export default function ModalWithForm({
         />
         <h3>{title}</h3>
         <form className="modal__form">{children}</form>
-        <button type="submit">{buttonText}</button>
+        <button className="modal__submit-button" type="submit">
+          {buttonText}
+        </button>
       </div>
     </div>
   );
