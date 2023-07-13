@@ -90,7 +90,7 @@
   color: white;
   border-radius: 4px;
   padding: 8px 16px;
-  margin-top: 32px;
+  width: fit-content;
 }
 
 .modal__submit-button:hover {

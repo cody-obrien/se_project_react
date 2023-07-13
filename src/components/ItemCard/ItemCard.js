@@ -7,7 +7,7 @@ export default function ItemCard({ item, onSelectCard }) {
         <img
           className="card__image"
           src={item.link}
-          alt="clothing"
+          alt={item.name}
           onClick={() => onSelectCard(item)}
         />
       </div>

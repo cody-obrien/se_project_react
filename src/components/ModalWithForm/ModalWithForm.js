@@ -15,10 +15,12 @@ export default function ModalWithForm({
           onClick={onClose}
         />
         <h3>{title}</h3>
-        <form className="modal__form">{children}</form>
-        <button className="modal__submit-button" type="submit">
-          {buttonText}
-        </button>
+        <form className="modal__form">
+          {children}
+          <button className="modal__submit-button" type="submit">
+            {buttonText}
+          </button>
+        </form>
       </div>
     </div>
   );

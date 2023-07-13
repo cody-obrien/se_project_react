@@ -29,10 +29,14 @@ function App() {
     setSelectedCard(card);
   };
   useEffect(() => {
-    getWeatherForecast().then((data) => {
-      setTemperature(parseWeatherData(data).temperature);
-      setLocation(parseWeatherData(data).location);
-    });
+    getWeatherForecast()
+      .then((data) => {
+        setTemperature(parseWeatherData(data).temperature);
+        setLocation(parseWeatherData(data).location);
+      })
+      .catch((err) => {
+        console.error("Error. The request has failed: ", err);
+      });
   }, []);
 
   return (

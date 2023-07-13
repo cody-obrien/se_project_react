@@ -1,11 +1,13 @@
 import "./Header.css";
+import logoPath from "../../images/logo.svg";
+import avatarPath from "../../images/avatar.svg";
 
 export default function Header({ date, location, onCreateModal }) {
   return (
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src={require("../../images/logo.svg").default} alt="WTWR Logo" />
+          <img src={logoPath} alt="WTWR Logo" />
         </div>
         <div>
           {date}, {location}
@@ -23,10 +25,7 @@ export default function Header({ date, location, onCreateModal }) {
         </div>
         <div>Terrence Tegegne</div>
         <div>
-          <img
-            src={require("../../images/avatar.svg").default}
-            alt="User Avatar"
-          />
+          <img src={avatarPath} alt="User Avatar" />
         </div>
       </div>
     </header>
