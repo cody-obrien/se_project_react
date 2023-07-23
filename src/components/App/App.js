@@ -4,6 +4,7 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext";
 import { useEffect, useState } from "react";
 import { getWeatherForecast, parseWeatherData } from "../../utils/weatherApi";
 
@@ -14,7 +15,7 @@ function App() {
   });
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [temperature, setTemperature] = useState(0);
+  const [temperature, setTemperature] = useState({});
   const [location, setLocation] = useState("");
   const [currentTempUnit, setCurrentTempUnit] = useState('F');
 
@@ -29,19 +30,28 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+  
   useEffect(() => {
     getWeatherForecast()
       .then((data) => {
         setTemperature(parseWeatherData(data).temperature);
         setLocation(parseWeatherData(data).location);
+        
       })
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
       });
   }, []);
 
+  const handleToggleSwitchChange = () => {
+    currentTempUnit === 'F'
+      ? setCurrentTempUnit('C')
+      : setCurrentTempUnit('F');
+  };
+
   return (
     <div className="app">
+      <CurrentTempUnitContext.Provider value={{currentTempUnit, handleToggleSwitchChange}}>
       <Header
         date={currentDate}
         location={location}
@@ -112,6 +122,7 @@ function App() {
         <ItemModal card={selectedCard} onClose={handleCloseModal} />
       )}
       <Footer />
+      </CurrentTempUnitContext.Provider>
     </div>
   );
 }

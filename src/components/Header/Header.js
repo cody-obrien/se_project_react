@@ -16,8 +16,9 @@ export default function Header({ date, location, onCreateModal }) {
         </div>
       </div>
       <div className="header__avatar-logo">
+      <ToggleSwitch />
+
         <div>
-          <ToggleSwitch />
           <button
             onClick={onCreateModal}
             type="text"
