@@ -11,7 +11,9 @@ export default function WeatherCard({ day, type, temperature }) {
 
   return (
     <section className="weather" id="weather">
-      <div className="weather__info"></div>
+      <div className="weather__info">
+        {temperature}°{tempContext.currentTempUnit}
+      </div>
       <img
         className="weather__image"
         src={weatherSrc[0].url}

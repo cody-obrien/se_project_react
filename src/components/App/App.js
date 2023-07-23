@@ -4,9 +4,12 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
+import Profile from "../Profile/Profile";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext";
 import { useEffect, useState } from "react";
 import { getWeatherForecast, parseWeatherData } from "../../utils/weatherApi";
+import { Route, Switch } from "react-router-dom";
+import { defaultClothingItems } from "../../utils/constants";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
@@ -18,6 +21,7 @@ function App() {
   const [temperature, setTemperature] = useState(0);
   const [location, setLocation] = useState("");
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -30,11 +34,13 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
+  let weatherData = {};
 
   useEffect(() => {
     getWeatherForecast()
       .then((data) => {
-        setTemperature(parseWeatherData(data).temperature[currentTempUnit]);
+        weatherData = parseWeatherData(data).temperature;
+        setTemperature(weatherData[currentTempUnit]);
         setLocation(parseWeatherData(data).location);
       })
       .catch((err) => {
@@ -56,11 +62,18 @@ function App() {
           location={location}
           onCreateModal={handleCreateModal}
         />
-        <Main
-          temperature={temperature}
-          location={location}
-          onSelectCard={handleSelectedCard}
-        />
+        <Switch>
+          <Route exact path="/">
+            <Main
+              temperature={temperature}
+              location={location}
+              onSelectCard={handleSelectedCard}
+            />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+        </Switch>
         {activeModal === "create" && (
           <ModalWithForm title="New Garment" onClose={handleCloseModal}>
             <div className="modal__input-container">

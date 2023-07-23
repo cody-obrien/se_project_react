@@ -27,8 +27,8 @@ export default function Main({ temperature, onSelectCard }) {
       return "cold";
     }
   }, [temperature]);
-  console.log(temperature);
-  console.log(weatherType);
+  // console.log(temperature);
+  // console.log(weatherType);
 
   const filteredCards = defaultClothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
