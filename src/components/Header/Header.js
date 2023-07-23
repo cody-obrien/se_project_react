@@ -1,6 +1,8 @@
 import "./Header.css";
 import logoPath from "../../images/logo.svg";
 import avatarPath from "../../images/avatar.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+
 
 export default function Header({ date, location, onCreateModal }) {
   return (
@@ -15,6 +17,7 @@ export default function Header({ date, location, onCreateModal }) {
       </div>
       <div className="header__avatar-logo">
         <div>
+          <ToggleSwitch />
           <button
             onClick={onCreateModal}
             type="text"
