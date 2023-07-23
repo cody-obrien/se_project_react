@@ -34,13 +34,13 @@ function App() {
   useEffect(() => {
     getWeatherForecast()
       .then((data) => {
-        setTemperature(parseWeatherData(data).temperature.F);
+        setTemperature(parseWeatherData(data).temperature[currentTempUnit]);
         setLocation(parseWeatherData(data).location);
       })
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
       });
-  }, []);
+  }, [currentTempUnit]);
 
   const handleToggleSwitchChange = () => {
     currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");

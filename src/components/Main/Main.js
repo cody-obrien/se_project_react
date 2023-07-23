@@ -9,16 +9,26 @@ import { useMemo, useContext } from "react";
 export default function Main({ temperature, onSelectCard }) {
   const tempContext = useContext(CurrentTempUnitContext);
   const weatherType = useMemo(() => {
-    if (temperature >= 86) {
+    if (tempContext.currentTempUnit === "F") {
+      if (temperature >= 86) {
+        return "hot";
+      } else if (temperature >= 66 && temperature <= 85) {
+        return "warm";
+      } else if (temperature <= 65) {
+        return "cold";
+      }
+    }
+
+    if (temperature >= 30) {
       return "hot";
-    } else if (temperature >= 66 && temperature <= 85) {
+    } else if (temperature >= 19 && temperature <= 29) {
       return "warm";
-    } else if (temperature <= 65) {
+    } else if (temperature <= 18) {
       return "cold";
     }
   }, [temperature]);
-  console.log(weatherType);
   console.log(temperature);
+  console.log(weatherType);
 
   const filteredCards = defaultClothingItems.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
