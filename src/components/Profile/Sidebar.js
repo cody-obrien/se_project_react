@@ -4,8 +4,8 @@ import "./Sidebar.css";
 export default function Sidebar() {
   return (
     <div className="sidebar">
-      <img src={avatarPath} alt="User Avatar" />
-      <span>Terrence Tegegne</span>
+      <img className="sidebar__avatar" src={avatarPath} alt="User Avatar" />
+      <span className="sidebar__username">Terrence Tegegne</span>
     </div>
   );
 }

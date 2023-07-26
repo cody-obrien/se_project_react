@@ -2,21 +2,21 @@ import "./Header.css";
 import logoPath from "../../images/logo.svg";
 import avatarPath from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
-
+import { Link } from "react-router-dom";
 
 export default function Header({ date, location, onCreateModal }) {
   return (
     <header className="header">
       <div className="header__logo">
-        <div>
+        <Link exact to="/">
           <img src={logoPath} alt="WTWR Logo" />
-        </div>
+        </Link>
         <div>
           {date}, {location}
         </div>
       </div>
       <div className="header__avatar-logo">
-      <ToggleSwitch />
+        <ToggleSwitch />
 
         <div>
           <button
@@ -28,9 +28,9 @@ export default function Header({ date, location, onCreateModal }) {
           </button>
         </div>
         <div>Terrence Tegegne</div>
-        <div>
+        <Link to="/profile">
           <img src={avatarPath} alt="User Avatar" />
-        </div>
+        </Link>
       </div>
     </header>
   );

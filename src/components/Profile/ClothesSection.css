@@ -1,7 +1,33 @@
-.cards {
+.clothes__section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.clothes__section-cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 20px;
+}
+
+.clothes__section-title-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.clothes__section-button {
+  border: none;
+  background: white;
+  transition: opacity linear 0.2s;
+}
+
+.clothes__section-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }

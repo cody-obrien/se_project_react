@@ -71,7 +71,10 @@ function App() {
             />
           </Route>
           <Route path="/profile">
-            <Profile />
+            <Profile
+              onSelectCard={handleSelectedCard}
+              onCreateModal={handleCreateModal}
+            />
           </Route>
         </Switch>
         {activeModal === "create" && (
