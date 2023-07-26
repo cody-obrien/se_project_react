@@ -46,7 +46,7 @@ function App() {
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
       });
-  }, [currentTempUnit]);
+  }, []);
 
   const handleToggleSwitchChange = () => {
     currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
