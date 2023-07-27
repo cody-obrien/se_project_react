@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
-import { CurrentTempUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { useEffect, useState } from "react";
 import { getWeatherForecast, parseWeatherData } from "../../utils/weatherApi";
 import { Route, Switch } from "react-router-dom";
@@ -98,7 +98,7 @@ function App() {
 
   return (
     <div className="app">
-      <CurrentTempUnitContext.Provider
+      <CurrentTemperatureUnitContext.Provider
         value={{ currentTempUnit, handleToggleSwitchChange }}
       >
         <Header
@@ -138,7 +138,7 @@ function App() {
           />
         )}
         <Footer />
-      </CurrentTempUnitContext.Provider>
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }
