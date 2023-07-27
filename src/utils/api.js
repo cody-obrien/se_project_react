@@ -25,7 +25,7 @@ function postItem(item) {
 }
 
 function deleteItem(id) {
-  return fetch(`${baseUrl}/items/:${id}`, { method: "DELETE" }).then(
+  return fetch(`${baseUrl}/items/${id}`, { method: "DELETE" }).then(
     checkResponse
   );
 }

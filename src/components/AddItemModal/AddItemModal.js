@@ -35,9 +35,7 @@ export default function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
     <ModalWithForm
       title="New Garment"
       onClose={onCloseModal}
-      onSubmit={() => {
-        handleSubmit();
-      }}
+      onSubmit={handleSubmit}
       isOpen={isOpen}
     >
       <div className="modal__input-container">

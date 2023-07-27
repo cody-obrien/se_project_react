@@ -38,14 +38,19 @@ function App() {
   };
   const handleAddItemSubmit = (newItem) => {
     const addFakeUniqueID = {
-      // id: 999,
+      id: 999,
       name: newItem.name,
       imageUrl: newItem.imageUrl,
       weather: newItem.weather,
     };
 
-    postItem(addFakeUniqueID);
-    setClothingItems([addFakeUniqueID, ...clothingItems]);
+    postItem(newItem)
+      .then(() => {
+        setClothingItems([newItem, ...clothingItems]);
+      })
+      .catch((err) => {
+        console.error("Error. The request has failed: ", err);
+      });
   };
 
   const handleDeleteItem = () => {
@@ -74,7 +79,7 @@ function App() {
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
       });
-  }, []);
+  }, [currentTempUnit]);
 
   useEffect(() => {
     getItems()
