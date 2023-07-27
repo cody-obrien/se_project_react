@@ -1,4 +1,4 @@
-import Sidebar from "./Sidebar";
+import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 import "./Profile.css";
 
@@ -10,7 +10,7 @@ export default function Profile({
 }) {
   return (
     <div className="profile">
-      <Sidebar />
+      <SideBar />
       <ClothesSection
         onSelectCard={onSelectCard}
         onCreateModal={onCreateModal}
