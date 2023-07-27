@@ -25,9 +25,9 @@ export default function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
   function handleSubmit(e) {
     e.preventDefault();
     onAddItem({
-      nameValue: nameValue,
-      linkValue: linkValue,
-      weatherValue: weatherValue,
+      name: nameValue,
+      imageUrl: linkValue,
+      weather: weatherValue,
     });
     onCloseModal();
   }
@@ -35,7 +35,9 @@ export default function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
     <ModalWithForm
       title="New Garment"
       onClose={onCloseModal}
-      onSubmit={handleSubmit}
+      onSubmit={() => {
+        handleSubmit();
+      }}
       isOpen={isOpen}
     >
       <div className="modal__input-container">

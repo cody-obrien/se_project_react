@@ -36,12 +36,12 @@ function App() {
     setActiveModal("preview");
     setSelectedCard(card);
   };
-  const handleAddItemSubmit = ({ nameValue, linkValue, weatherValue }) => {
+  const handleAddItemSubmit = (newItem) => {
     const addFakeUniqueID = {
       // id: 999,
-      name: nameValue,
-      imageUrl: linkValue,
-      weather: weatherValue,
+      name: newItem.name,
+      imageUrl: newItem.imageUrl,
+      weather: newItem.weather,
     };
 
     postItem(addFakeUniqueID);
@@ -80,6 +80,7 @@ function App() {
     getItems()
       .then((res) => {
         setClothingItems(res);
+        console.log(res);
       })
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
