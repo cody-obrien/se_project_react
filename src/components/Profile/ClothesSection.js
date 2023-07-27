@@ -2,7 +2,11 @@ import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
-export default function ClothesSection({ onSelectCard, onCreateModal }) {
+export default function ClothesSection({
+  onSelectCard,
+  onCreateModal,
+  clothesList,
+}) {
   return (
     <div className="clothes__section">
       <div className="clothes__section-title-wrapper">
@@ -16,9 +20,9 @@ export default function ClothesSection({ onSelectCard, onCreateModal }) {
         </button>
       </div>
       <div className="clothes__section-cards">
-        {defaultClothingItems.map((item) => {
+        {clothesList.map((item) => {
           return (
-            <ItemCard key={item._id} item={item} onSelectCard={onSelectCard} />
+            <ItemCard key={item.id} item={item} onSelectCard={onSelectCard} />
           );
         })}
       </div>

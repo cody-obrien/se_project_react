@@ -50,5 +50,19 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.item-modal__footer {
+  display: flex;
+  justify-content: space-between;
   padding: 32px;
+}
+
+.item-modal__delete-button {
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  transition: opacity 0.2s linear;
+  font-weight: 700;
+  color: red;
 }

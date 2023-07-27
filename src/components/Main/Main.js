@@ -6,7 +6,7 @@ import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext";
 
 import { useMemo, useContext } from "react";
 
-export default function Main({ temperature, onSelectCard }) {
+export default function Main({ temperature, onSelectCard, clothesList }) {
   const tempContext = useContext(CurrentTempUnitContext);
   const weatherType = useMemo(() => {
     if (tempContext.currentTempUnit === "F") {
@@ -30,7 +30,7 @@ export default function Main({ temperature, onSelectCard }) {
   // console.log(temperature);
   // console.log(weatherType);
 
-  const filteredCards = defaultClothingItems.filter((item) => {
+  const filteredCards = clothesList.filter((item) => {
     return item.weather.toLowerCase() === weatherType;
   });
 
@@ -45,11 +45,7 @@ export default function Main({ temperature, onSelectCard }) {
         <div className="card__items">
           {filteredCards.map((item) => {
             return (
-              <ItemCard
-                key={item._id}
-                item={item}
-                onSelectCard={onSelectCard}
-              />
+              <ItemCard key={item.id} item={item} onSelectCard={onSelectCard} />
             );
           })}
         </div>

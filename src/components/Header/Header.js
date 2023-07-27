@@ -8,7 +8,7 @@ export default function Header({ date, location, onCreateModal }) {
   return (
     <header className="header">
       <div className="header__logo">
-        <Link exact to="/">
+        <Link to="/">
           <img src={logoPath} alt="WTWR Logo" />
         </Link>
         <div>

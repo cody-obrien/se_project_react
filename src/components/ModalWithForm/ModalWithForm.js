@@ -5,6 +5,8 @@ export default function ModalWithForm({
   buttonText = "Add Garment",
   children,
   onClose,
+  onSubmit,
+  isOpen,
 }) {
   return (
     <div className={`modal modal_type_${name}`}>
@@ -15,7 +17,7 @@ export default function ModalWithForm({
           onClick={onClose}
         />
         <h3>{title}</h3>
-        <form className="modal__form">
+        <form onSubmit={onSubmit} className="modal__form">
           {children}
           <button className="modal__submit-button" type="submit">
             {buttonText}
