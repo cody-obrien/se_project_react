@@ -38,8 +38,8 @@ export default function Main({ temperature, onSelectCard, clothesList }) {
     <main className="main">
       <WeatherCard day={true} type={"sunny"} temperature={temperature} />
       <div>
-        Today is {temperature}°{tempContext.currentTempUnit}/ You may want to
-        wear:
+        Today is {temperature}°{tempContext.currentTemperatureUnit}/ You may
+        want to wear:
       </div>
       <section className="card__section" id="card-section">
         <div className="card__items">

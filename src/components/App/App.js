@@ -22,7 +22,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [temperature, setTemperature] = useState(0);
   const [location, setLocation] = useState("");
-  const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
   const handleCreateModal = () => {
@@ -73,13 +73,13 @@ function App() {
     getWeatherForecast()
       .then((data) => {
         weatherData = parseWeatherData(data).temperature;
-        setTemperature(weatherData[currentTempUnit]);
+        setTemperature(weatherData[currentTemperatureUnit]);
         setLocation(parseWeatherData(data).location);
       })
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
       });
-  }, [currentTempUnit]);
+  }, [currentTemperatureUnit]);
 
   useEffect(() => {
     getItems()
@@ -93,13 +93,15 @@ function App() {
   }, []);
 
   const handleToggleSwitchChange = () => {
-    currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
+    currentTemperatureUnit === "F"
+      ? setCurrentTempUnit("C")
+      : setCurrentTempUnit("F");
   };
 
   return (
     <div className="app">
       <CurrentTemperatureUnitContext.Provider
-        value={{ currentTempUnit, handleToggleSwitchChange }}
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <Header
           date={currentDate}
