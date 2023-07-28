@@ -11,7 +11,7 @@ export default function ModalWithForm({
     <div className={`modal modal_type_${name}`}>
       <div className="modal__content">
         <button
-          className="modal__close-button"
+          className="modal__close-button modal__add-close-button"
           type="button"
           onClick={onClose}
         />

@@ -4,7 +4,7 @@ export default function ItemModal({ card, onClose, onDelete }) {
     <div className={`modal`}>
       <div className="item-modal__content">
         <button
-          className="modal__close-button"
+          className="modal__close-button modal__item-close-button"
           type="button"
           onClick={onClose}
         ></button>
