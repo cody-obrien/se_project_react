@@ -1,13 +1,6 @@
-const baseUrl =
-  "https://my-json-server.typicode.com/cody-obrien/se_project_react";
+import { baseUrl } from "./constants";
+import { checkResponse } from "./utils";
 
-function checkResponse(response) {
-  if (!response.ok) {
-    return Promise.reject(`Error: ${response.status}`);
-  }
-
-  return response.json();
-}
 function getItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 }
@@ -19,7 +12,7 @@ function postItem(item) {
       name: item.name,
       imageUrl: item.imageUrl,
       weather: item.weather,
-      //   id: item.id,
+      id: item.id,
     }),
   }).then(checkResponse);
 }

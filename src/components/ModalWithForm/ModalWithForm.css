@@ -59,8 +59,7 @@
 .modal__add-close-button {
   background-image: url("../../images/close-button.svg");
 }
-.modal__item-close-button {
-}
+
 .modal__close-button:hover {
   opacity: 0.6;
 }
