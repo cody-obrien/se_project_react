@@ -37,10 +37,11 @@ function App() {
     setSelectedCard(card);
   };
   const handleAddItemSubmit = (newItem) => {
-    const addFakeId = { id: clothingItems.length + 1, ...newItem };
-    postItem(addFakeId)
-      .then(() => {
-        setClothingItems([addFakeId, ...clothingItems]);
+    postItem(newItem)
+      .then((res) => {
+        const newItemWithId = { id: res.id, ...newItem };
+
+        setClothingItems([newItemWithId, ...clothingItems]);
       })
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
