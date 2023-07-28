@@ -2,11 +2,10 @@ import "./ModalWithForm.css";
 export default function ModalWithForm({
   title,
   name,
-  buttonText = "Add Garment",
+  buttonText,
   children,
   onClose,
   onSubmit,
-  isOpen,
 }) {
   return (
     <div className={`modal modal_type_${name}`}>

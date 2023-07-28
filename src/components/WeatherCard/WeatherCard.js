@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 
 export default function WeatherCard({ day, type, temperature }) {
-  const weatherSrc = weatherOptions.filter((i) => {
-    return i.day === day && i.type === type;
+  const weatherSrc = weatherOptions.find((weatherOption) => {
+    return weatherOption.day === day && weatherOption.type === type;
   });
   const tempContext = useContext(CurrentTemperatureUnitContext);
 
@@ -14,11 +14,7 @@ export default function WeatherCard({ day, type, temperature }) {
       <div className="weather__info">
         {temperature}°{tempContext.currentTemperatureUnit}
       </div>
-      <img
-        className="weather__image"
-        src={weatherSrc[0].url}
-        alt="Weather Pic"
-      />
+      <img className="weather__image" src={weatherSrc.url} alt="Weather Pic" />
     </section>
   );
 }

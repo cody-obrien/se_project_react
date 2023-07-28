@@ -95,5 +95,18 @@ const weatherOptions = [
     type: "storm",
   },
 ];
+const APIkey = "4c380131831981e8bc0a56308e02dda2";
+const latitude = 42.360081;
+const longitude = -71.058884;
 
-export { defaultClothingItems, weatherOptions };
+const baseUrl =
+  "https://my-json-server.typicode.com/cody-obrien/se_project_react";
+
+export {
+  defaultClothingItems,
+  weatherOptions,
+  baseUrl,
+  APIkey,
+  latitude,
+  longitude,
+};

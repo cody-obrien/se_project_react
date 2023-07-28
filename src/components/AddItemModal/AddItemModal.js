@@ -36,7 +36,7 @@ export default function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
       title="New Garment"
       onClose={onCloseModal}
       onSubmit={handleSubmit}
-      isOpen={isOpen}
+      buttonText="Add Garment"
     >
       <div className="modal__input-container">
         <label htmlFor="name">Name</label>
@@ -47,7 +47,7 @@ export default function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
           name="name"
           placeholder="Name"
           value={nameValue}
-        ></input>
+        />
       </div>
       <div className="modal__input-container">
         <label htmlFor="imageUrl">Image URL</label>
@@ -58,7 +58,7 @@ export default function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
           name="imageUrl"
           placeholder="Image URL"
           value={linkValue}
-        ></input>
+        />
       </div>
       <span>Select the weather type:</span>
       <div>
