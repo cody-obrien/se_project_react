@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-// import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -11,7 +11,9 @@ import { getWeatherForecast, parseWeatherData } from "../../utils/weatherApi";
 import { Route, Switch } from "react-router-dom";
 // import { defaultClothingItems } from "../../utils/constants";
 import AddItemModal from "../AddItemModal/AddItemModal";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getItems, postItem, deleteItem } from "../../utils/api";
+import RegisterModal from "../RegisterModal/RegisterModal";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
@@ -24,6 +26,7 @@ function App() {
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -111,13 +114,15 @@ function App() {
               clothesList={clothingItems}
             />
           </Route>
-          <Route path="/profile">
-            <Profile
-              onSelectCard={handleSelectedCard}
-              onCreateModal={handleCreateModal}
-              clothesList={clothingItems}
-            />
-          </Route>
+          <ProtectedRoute path="/profile" loggedIn={loggedIn}>
+            <Route path="/profile">
+              <Profile
+                onSelectCard={handleSelectedCard}
+                onCreateModal={handleCreateModal}
+                clothesList={clothingItems}
+              />
+            </Route>
+          </ProtectedRoute>
         </Switch>
         {activeModal === "create" && (
           <AddItemModal
@@ -133,6 +138,7 @@ function App() {
             onDelete={handleDeleteItem}
           />
         )}
+        <RegisterModal onCloseModal={handleCloseModal} />
         <Footer />
       </CurrentTemperatureUnitContext.Provider>
     </div>

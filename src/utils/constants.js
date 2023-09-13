@@ -99,8 +99,8 @@ const APIkey = "4c380131831981e8bc0a56308e02dda2";
 const latitude = 42.360081;
 const longitude = -71.058884;
 
-const baseUrl =
-  "https://my-json-server.typicode.com/cody-obrien/se_project_react";
+// "https://my-json-server.typicode.com/cody-obrien/se_project_react";
+const baseUrl = "http://localhost:3001";
 
 export {
   defaultClothingItems,
