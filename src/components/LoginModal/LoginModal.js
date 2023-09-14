@@ -1,20 +1,12 @@
-import "./RegisterModal.css";
+import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
-import { signUp } from "../../utils/auth";
+import { signIn } from "../../utils/auth";
 
-export default function RegisterModal({ onCloseModal, onSubmit }) {
-  const [nameValue, setNameValue] = useState("");
-  const [avatarValue, setAvatarValue] = useState("");
+export default function LoginModal({ onCloseModal, onSubmit }) {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
 
-  function handleChangeName(e) {
-    setNameValue(e.target.value);
-  }
-  function handleChangeAvatar(e) {
-    setAvatarValue(e.target.value);
-  }
   function handleChangePassword(e) {
     setPasswordValue(e.target.value);
   }
@@ -23,12 +15,15 @@ export default function RegisterModal({ onCloseModal, onSubmit }) {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit({ nameValue, avatarValue, emailValue, passwordValue });
+    signIn({
+      email: emailValue,
+      password: passwordValue,
+    });
     onCloseModal();
   }
   return (
     <ModalWithForm
-      title="Sign Up"
+      title="Sign In"
       onClose={onCloseModal}
       onSubmit={handleSubmit}
     >
@@ -54,28 +49,7 @@ export default function RegisterModal({ onCloseModal, onSubmit }) {
           value={passwordValue}
         />
       </div>
-      <div className="modal__input-container">
-        <label htmlFor="imageUrl">Name</label>
-        <input
-          onChange={handleChangeName}
-          className="modal__input"
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={nameValue}
-        />
-      </div>
-      <div className="modal__input-container">
-        <label htmlFor="avatarURL">Avatar URL</label>
-        <input
-          onChange={handleChangeAvatar}
-          className="modal__input"
-          type="url"
-          name="avatarURL"
-          placeholder="Avatar URL"
-          value={avatarValue}
-        />
-      </div>
+
       <button className="modal__submit-button" type="submit">
         Next
       </button>

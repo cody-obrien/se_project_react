@@ -4,7 +4,13 @@ import avatarPath from "../../images/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
-export default function Header({ date, location, onCreateModal }) {
+export default function Header({
+  date,
+  location,
+  onCreateModal,
+  onRegisterModal,
+  onLoginModal,
+}) {
   return (
     <header className="header">
       <div className="header__logo">
@@ -25,6 +31,16 @@ export default function Header({ date, location, onCreateModal }) {
             className="header__button"
           >
             + Add clothes
+          </button>
+          <button
+            onClick={onRegisterModal}
+            type="text"
+            className="header__button"
+          >
+            Sign Up
+          </button>
+          <button onClick={onLoginModal} type="text" className="header__button">
+            Log In
           </button>
         </div>
         <div>Terrence Tegegne</div>

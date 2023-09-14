@@ -45,7 +45,11 @@ export default function Main({ temperature, onSelectCard, clothesList }) {
         <div className="card__items">
           {filteredCards.map((item) => {
             return (
-              <ItemCard key={item.id} item={item} onSelectCard={onSelectCard} />
+              <ItemCard
+                key={item._id}
+                item={item}
+                onSelectCard={onSelectCard}
+              />
             );
           })}
         </div>

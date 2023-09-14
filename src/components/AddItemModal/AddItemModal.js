@@ -96,6 +96,9 @@ export default function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
           />
           <label htmlFor="cold">Cold</label>
         </div>
+        <button className="modal__submit-button" type="submit">
+          Add Garment
+        </button>
       </div>
     </ModalWithForm>
   );

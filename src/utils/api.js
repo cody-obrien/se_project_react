@@ -6,8 +6,12 @@ function getItems() {
 }
 
 function postItem(item) {
+  const token = localStorage.getItem("jwt");
   return fetch(`${baseUrl}/items`, {
     method: "POST",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name: item.name,
       imageUrl: item.imageUrl,
@@ -18,9 +22,13 @@ function postItem(item) {
 }
 
 function deleteItem(id) {
-  return fetch(`${baseUrl}/items/${id}`, { method: "DELETE" }).then(
-    checkResponse
-  );
+  const token = localStorage.getItem("jwt");
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
 }
 
 export { getItems, postItem, deleteItem };

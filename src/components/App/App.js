@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
+// import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import Profile from "../Profile/Profile";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
@@ -14,6 +14,8 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getItems, postItem, deleteItem } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
+import LoginModal from "../LoginModal/LoginModal";
+import { signUp, signIn, checkToken } from "../../utils/auth";
 
 function App() {
   const currentDate = new Date().toLocaleString("default", {
@@ -27,9 +29,15 @@ function App() {
   const [currentTemperatureUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const [token, setToken] = useState("");
   const handleCreateModal = () => {
     setActiveModal("create");
+  };
+  const handleRegisterModal = () => {
+    setActiveModal("register");
+  };
+  const handleLoginModal = () => {
+    setActiveModal("login");
   };
   const handleCloseModal = () => {
     setActiveModal("");
@@ -65,6 +73,40 @@ function App() {
         console.error("Error. The request has failed: ", err);
       });
   };
+
+  const handleRegister = ({
+    nameValue,
+    avatarValue,
+    emailValue,
+    passwordValue,
+  }) => {
+    // console.log(nameValue, avatarValue, emailValue, passwordValue);
+    signUp({
+      name: nameValue,
+      avatar: avatarValue,
+      email: emailValue,
+      password: passwordValue,
+    })
+      .then((res) => {
+        // console.log(nameValue, avatarValue, emailValue, passwordValue);
+        handleSignIn({ emailValue, passwordValue });
+      })
+      .catch((err) => {
+        console.error("Error. Register failed: ", err);
+      });
+  };
+
+  const handleSignIn = ({ email, password }) => {
+    signIn({ email, password })
+      .then((res) => res.json())
+      .then(() => {
+        localStorage.setItem("jwt", res.token);
+        setLoggedIn(true);
+      })
+      .catch((err) => {
+        console.error("Error. Sign In failed: ", err);
+      });
+  };
   let weatherData = {};
 
   useEffect(() => {
@@ -89,6 +131,18 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      setToken(jwt);
+      checkToken(jwt)
+        .then((res) => {
+          return res;
+        })
+        .catch((err) => console.error("Invalid token: ", err));
+    }
+  }, []);
+
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
       ? setCurrentTempUnit("C")
@@ -104,6 +158,8 @@ function App() {
           date={currentDate}
           location={location}
           onCreateModal={handleCreateModal}
+          onRegisterModal={handleRegisterModal}
+          onLoginModal={handleLoginModal}
         />
         <Switch>
           <Route exact path="/">
@@ -138,7 +194,15 @@ function App() {
             onDelete={handleDeleteItem}
           />
         )}
-        <RegisterModal onCloseModal={handleCloseModal} />
+        {activeModal === "register" && (
+          <RegisterModal
+            onCloseModal={handleCloseModal}
+            onSubmit={handleRegister}
+          />
+        )}
+        {activeModal === "login" && (
+          <LoginModal onCloseModal={handleCloseModal} onSubmit={handleSignIn} />
+        )}
         <Footer />
       </CurrentTemperatureUnitContext.Provider>
     </div>
