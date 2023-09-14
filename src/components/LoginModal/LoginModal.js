@@ -1,7 +1,6 @@
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
-import { signIn } from "../../utils/auth";
 
 export default function LoginModal({ onCloseModal, onSubmit }) {
   const [emailValue, setEmailValue] = useState("");
@@ -13,14 +12,13 @@ export default function LoginModal({ onCloseModal, onSubmit }) {
   function handleChangeEmail(e) {
     setEmailValue(e.target.value);
   }
+
   function handleSubmit(e) {
     e.preventDefault();
-    signIn({
-      email: emailValue,
-      password: passwordValue,
-    });
     onCloseModal();
+    onSubmit({ emailValue, passwordValue });
   }
+
   return (
     <ModalWithForm
       title="Sign In"

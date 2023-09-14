@@ -1,4 +1,5 @@
 import { baseUrl } from "./constants";
+import { checkResponse } from "./utils";
 
 function signUp({ name, avatar, email, password }) {
   return fetch(`${baseUrl}/signup`, {
@@ -7,13 +8,7 @@ function signUp({ name, avatar, email, password }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then(checkResponse);
 }
 
 function signIn({ email, password }) {
@@ -23,28 +18,15 @@ function signIn({ email, password }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then(checkResponse);
 }
 function checkToken(token) {
-  return fetch(`${baseURL}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  })
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      return data;
-    })
-    .catch((err) => console.log(err));
+  }).then(checkResponse);
 }
 export { signUp, signIn, checkToken };

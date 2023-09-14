@@ -16,8 +16,7 @@ import { getItems, postItem, deleteItem } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import { signUp, signIn, checkToken } from "../../utils/auth";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
-
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 function App() {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -32,6 +31,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [token, setToken] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
+
   const handleCreateModal = () => {
     setActiveModal("create");
   };
@@ -82,7 +82,6 @@ function App() {
     emailValue,
     passwordValue,
   }) => {
-    // console.log(nameValue, avatarValue, emailValue, passwordValue);
     signUp({
       name: nameValue,
       avatar: avatarValue,
@@ -90,10 +89,9 @@ function App() {
       password: passwordValue,
     })
       .then((res) => {
-        // console.log(nameValue, avatarValue, emailValue, passwordValue);
-        localStorage.setItem("jwt", res.token);
-        handleSignIn({ emailValue, passwordValue }).then((res) => {
-          setCurrentUser(res);
+        setCurrentUser(res);
+        signIn({ email: emailValue, password: passwordValue }).then((res) => {
+          localStorage.setItem("jwt", res.token);
           setIsLoggedIn(true);
         });
       })
@@ -102,20 +100,25 @@ function App() {
       });
   };
 
-  const handleSignIn = ({ email, password }) => {
-    signIn({ email, password })
-      .then((res) => res.json())
+  const handleSignIn = ({ emailValue, passwordValue }) => {
+    signIn({ email: emailValue, password: passwordValue })
       .then((res) => {
-        checkToken(res.token).then((data) => {
-          localStorage.setItem("jwt", data.token);
-          setIsLoggedIn(true);
-          setCurrentUser(data);
-        });
+        console.log(res);
+        localStorage.setItem("jwt", res.token);
+        setIsLoggedIn(true);
       })
       .catch((err) => {
         console.error("Sign In failed: ", err);
       });
   };
+
+  const handleSignOut = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn("false");
+  };
+
+  const handleEditProfile = () => {};
+
   let weatherData = {};
 
   useEffect(() => {
@@ -146,7 +149,8 @@ function App() {
       setToken(jwt);
       checkToken(jwt)
         .then((res) => {
-          return res;
+          setIsLoggedIn(true);
+          setCurrentUser(res);
         })
         .catch((err) => console.error("Invalid token: ", err));
     }
@@ -159,7 +163,7 @@ function App() {
   };
 
   return (
-    <CurrentUsertContext.Provder value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -170,6 +174,7 @@ function App() {
             onCreateModal={handleCreateModal}
             onRegisterModal={handleRegisterModal}
             onLoginModal={handleLoginModal}
+            isLoggedIn={isLoggedIn}
           />
           <Switch>
             <Route exact path="/">
@@ -186,6 +191,8 @@ function App() {
                   onSelectCard={handleSelectedCard}
                   onCreateModal={handleCreateModal}
                   clothesList={clothingItems}
+                  onSignOut={handleSignOut}
+                  onEditProfile={handleEditProfile}
                 />
               </Route>
             </ProtectedRoute>
@@ -219,7 +226,7 @@ function App() {
           <Footer />
         </CurrentTemperatureUnitContext.Provider>
       </div>
-    </CurrentUsertContext.Provder>
+    </CurrentUserContext.Provider>
   );
 }
 
