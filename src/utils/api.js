@@ -16,7 +16,6 @@ function postItem(item) {
       name: item.name,
       imageUrl: item.imageUrl,
       weather: item.weather,
-      id: item.id,
     }),
   }).then(checkResponse);
 }

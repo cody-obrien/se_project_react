@@ -1,12 +1,19 @@
 import { defaultClothingItems } from "../../utils/constants";
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function ClothesSection({
   onSelectCard,
   onCreateModal,
   clothesList,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+  const userId = currentUser.user._id;
+  const userClothes = clothesList.filter((item) => {
+    return item._id === userId;
+  });
   return (
     <div className="clothes__section">
       <div className="clothes__section-title-wrapper">
@@ -20,7 +27,7 @@ export default function ClothesSection({
         </button>
       </div>
       <div className="clothes__section-cards">
-        {clothesList.map((item) => {
+        {userClothes.map((item) => {
           return (
             <ItemCard key={item._id} item={item} onSelectCard={onSelectCard} />
           );

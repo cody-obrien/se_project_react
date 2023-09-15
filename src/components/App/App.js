@@ -52,9 +52,7 @@ function App() {
   const handleAddItemSubmit = (newItem) => {
     postItem(newItem)
       .then((res) => {
-        const newItemWithId = { id: res.id, ...newItem };
-
-        setClothingItems([newItemWithId, ...clothingItems]);
+        setClothingItems([res, ...clothingItems]);
       })
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
@@ -62,11 +60,11 @@ function App() {
   };
 
   const handleDeleteItem = () => {
-    deleteItem(selectedCard.id)
+    deleteItem(selectedCard._id)
       .then(() => {
         setClothingItems(
           clothingItems.filter((item) => {
-            return item.id !== selectedCard.id;
+            return item._id !== selectedCard._id;
           })
         );
         setActiveModal("");

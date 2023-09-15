@@ -61,11 +61,15 @@
   padding: 32px;
 }
 
-.item-modal__delete-button {
+.item__delete-button {
   border: none;
   cursor: pointer;
   background-color: white;
   transition: opacity 0.2s linear;
   font-weight: 700;
   color: red;
+}
+
+.item__delete-button_hidden {
+  visibility: hidden;
 }
