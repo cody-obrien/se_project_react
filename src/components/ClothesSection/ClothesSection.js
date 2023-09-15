@@ -22,7 +22,7 @@ export default function ClothesSection({
       <div className="clothes__section-cards">
         {clothesList.map((item) => {
           return (
-            <ItemCard key={item.id} item={item} onSelectCard={onSelectCard} />
+            <ItemCard key={item._id} item={item} onSelectCard={onSelectCard} />
           );
         })}
       </div>

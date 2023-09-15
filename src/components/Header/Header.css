@@ -9,13 +9,13 @@
   line-height: 24px;
 }
 
-.header__logo {
+.header__left {
   display: flex;
   align-items: center;
   gap: 24px;
 }
 
-.header__avatar-logo {
+.header__right {
   display: flex;
   align-items: center;
   gap: 24px;
@@ -31,4 +31,16 @@
 
 .header__button:hover {
   opacity: 0.5;
+}
+
+.header__right-profile {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.header__user-avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 }

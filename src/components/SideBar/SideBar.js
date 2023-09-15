@@ -1,12 +1,31 @@
 import avatarPath from "../../images/avatar.svg";
 import "./SideBar.css";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function SideBar({ onSignOut, onEditProfile }) {
+  const userContext = useContext(CurrentUserContext);
+  const userData = userContext
+    ? userContext
+    : { user: { name: "", avatar: "" } };
+  const userAvatarUrl = userData.user.avatar;
+  const userName = userData.user.name;
+  const showUserAvatar = userAvatarUrl === "" ? true : false;
   return (
     <div className="sidebar">
       <div className="sidebar__user-info">
-        <img className="sidebar__avatar" src={avatarPath} alt="User Avatar" />
-        <span className="sidebar__username">Terrence Tegegne</span>
+        {showUserAvatar ? (
+          <img
+            className="sidebar__avatar"
+            src={userAvatarUrl}
+            alt="User Avatar"
+          />
+        ) : (
+          <p className="sidebar__avatar-placeholder">
+            {userName[0].toUpperCase()}
+          </p>
+        )}
+        <span className="sidebar__username">{userName}</span>
       </div>
       <div className="sidebar__buttons">
         <button onClick={onEditProfile} className="sidebar__button">

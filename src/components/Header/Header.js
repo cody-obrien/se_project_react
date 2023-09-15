@@ -15,9 +15,14 @@ export default function Header({
   isLoggedIn,
 }) {
   const userContext = useContext(CurrentUserContext);
+  const userData = userContext
+    ? userContext
+    : { user: { name: "", avatar: "" } };
+  const userAvatarUrl = userData.user.avatar;
+
   return (
     <header className="header">
-      <div className="header__logo">
+      <div className="header__left">
         <Link to="/">
           <img src={logoPath} alt="WTWR Logo" />
         </Link>
@@ -25,10 +30,10 @@ export default function Header({
           {date}, {location}
         </div>
       </div>
-      <div className="header__avatar-logo">
+      <div className="header__right">
         <ToggleSwitch />
         {isLoggedIn ? (
-          <div>
+          <div className="header__right-profile">
             <button
               onClick={onCreateModal}
               type="text"
@@ -37,11 +42,15 @@ export default function Header({
               + Add clothes
             </button>
             <Link to="/profile">
-              <img src={avatarPath} alt="User Avatar" />
+              <img
+                src={userAvatarUrl}
+                alt="User Avatar"
+                className="header__user-avatar"
+              />
             </Link>
           </div>
         ) : (
-          <div>
+          <div className="header__right-profile">
             <button
               onClick={onRegisterModal}
               type="text"

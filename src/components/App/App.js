@@ -103,8 +103,9 @@ function App() {
   const handleSignIn = ({ emailValue, passwordValue }) => {
     signIn({ email: emailValue, password: passwordValue })
       .then((res) => {
-        console.log(res);
         localStorage.setItem("jwt", res.token);
+        setToken(localStorage.getItem("jwt"));
+
         setIsLoggedIn(true);
       })
       .catch((err) => {
@@ -115,6 +116,7 @@ function App() {
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
     setIsLoggedIn("false");
+    setCurrentUser(null);
   };
 
   const handleEditProfile = () => {};
@@ -154,7 +156,7 @@ function App() {
         })
         .catch((err) => console.error("Invalid token: ", err));
     }
-  }, []);
+  }, [token]);
 
   const handleToggleSwitchChange = () => {
     currentTemperatureUnit === "F"
