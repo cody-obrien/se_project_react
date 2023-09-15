@@ -36,7 +36,6 @@ export default function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
       title="New Garment"
       onClose={onCloseModal}
       onSubmit={handleSubmit}
-      buttonText="Add Garment"
     >
       <div className="modal__input-container">
         <label htmlFor="name">Name</label>

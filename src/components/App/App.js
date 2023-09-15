@@ -15,6 +15,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { getItems, postItem, deleteItem } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import { signUp, signIn, checkToken } from "../../utils/auth";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 function App() {
@@ -223,6 +224,8 @@ function App() {
               onSubmit={handleSignIn}
             />
           )}
+
+          <EditProfileModal></EditProfileModal>
           <Footer />
         </CurrentTemperatureUnitContext.Provider>
       </div>
