@@ -2,7 +2,11 @@ import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 
-export default function LoginModal({ onCloseModal, onSubmit }) {
+export default function LoginModal({
+  onCloseModal,
+  onSubmit,
+  onRegisterModal,
+}) {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
 
@@ -48,9 +52,14 @@ export default function LoginModal({ onCloseModal, onSubmit }) {
         />
       </div>
 
-      <button className="modal__submit-button" type="submit">
-        Next
-      </button>
+      <div className="modal__button-container">
+        <button className="modal__submit-button" type="submit">
+          Next
+        </button>
+        <button className="modal__redirect-button" onClick={onRegisterModal}>
+          or Register
+        </button>
+      </div>
     </ModalWithForm>
   );
 }

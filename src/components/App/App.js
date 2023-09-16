@@ -260,12 +260,14 @@ function App() {
             <RegisterModal
               onCloseModal={handleCloseModal}
               onSubmit={handleRegistration}
+              onLoginModal={handleLoginModal}
             />
           )}
           {activeModal === "login" && (
             <LoginModal
               onCloseModal={handleCloseModal}
               onSubmit={handleSignIn}
+              onRegisterModal={handleRegisterModal}
             />
           )}
 

@@ -3,7 +3,11 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useState } from "react";
 import { signUp } from "../../utils/auth";
 
-export default function RegisterModal({ onCloseModal, onSubmit }) {
+export default function RegisterModal({
+  onCloseModal,
+  onSubmit,
+  onLoginModal,
+}) {
   const [nameValue, setNameValue] = useState("");
   const [avatarValue, setAvatarValue] = useState("");
   const [emailValue, setEmailValue] = useState("");
@@ -76,9 +80,14 @@ export default function RegisterModal({ onCloseModal, onSubmit }) {
           value={avatarValue}
         />
       </div>
-      <button className="modal__submit-button" type="submit">
-        Next
-      </button>
+      <div className="modal__button-container">
+        <button className="modal__submit-button" type="submit">
+          Next
+        </button>
+        <button className="modal__redirect-button" onClick={onLoginModal}>
+          or Login
+        </button>
+      </div>
     </ModalWithForm>
   );
 }
