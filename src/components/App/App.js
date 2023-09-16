@@ -12,7 +12,14 @@ import { Route, Switch } from "react-router-dom";
 // import { defaultClothingItems } from "../../utils/constants";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { getItems, postItem, deleteItem, editProfile } from "../../utils/api";
+import {
+  getItems,
+  postItem,
+  deleteItem,
+  editProfile,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
@@ -171,6 +178,32 @@ function App() {
       : setCurrentTempUnit("F");
   };
 
+  const handleLikeClick = ({ id, isLiked, user }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is now liked
+    isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+
+        // the first argument is the card's id
+        addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+
+        // the first argument is the card's id
+        removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((c) => (c._id === id ? updatedCard : c))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
@@ -192,6 +225,7 @@ function App() {
                 location={location}
                 onSelectCard={handleSelectedCard}
                 clothesList={clothingItems}
+                onCardLike={handleLikeClick}
               />
             </Route>
             <ProtectedRoute path="/profile" loggedIn={isLoggedIn}>

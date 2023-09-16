@@ -19,6 +19,7 @@ export default function Header({
     ? userContext
     : { user: { name: "", avatar: "" } };
   const userAvatarUrl = userData.user.avatar;
+  const userName = userData.user.name;
 
   return (
     <header className="header">
@@ -41,6 +42,7 @@ export default function Header({
             >
               + Add clothes
             </button>
+            <span>{userName}</span>
             <Link to="/profile">
               <img
                 src={userAvatarUrl}

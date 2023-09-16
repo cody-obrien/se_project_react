@@ -1,5 +1,8 @@
 import "./ItemCard.css";
-export default function ItemCard({ item, onSelectCard }) {
+export default function ItemCard({ item, onSelectCard, onCardLike }) {
+  function handleLikeClick() {
+    onCardLike();
+  }
   return (
     <div>
       <div className="card__name">{item.name}</div>

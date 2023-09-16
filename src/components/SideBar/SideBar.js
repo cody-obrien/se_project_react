@@ -2,6 +2,7 @@ import avatarPath from "../../images/avatar.svg";
 import "./SideBar.css";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function SideBar({ onSignOut, onEditModal }) {
   const userContext = useContext(CurrentUserContext);
@@ -11,6 +12,11 @@ export default function SideBar({ onSignOut, onEditModal }) {
   const userAvatarUrl = userData.user.avatar;
   const userName = userData.user.name;
   const showUserAvatar = userAvatarUrl === "" ? true : false;
+  const history = useHistory();
+  const handleSignout = () => {
+    onSignOut();
+    history.push("/");
+  };
   return (
     <div className="sidebar">
       <div className="sidebar__user-info">
@@ -31,7 +37,7 @@ export default function SideBar({ onSignOut, onEditModal }) {
         <button onClick={onEditModal} className="sidebar__button">
           Change profile data
         </button>
-        <button onClick={onSignOut} className="sidebar__button">
+        <button onClick={handleSignout} className="sidebar__button">
           Log out
         </button>
       </div>
