@@ -9,10 +9,11 @@ export default function Profile({
   onDeleteCard,
   onSignOut,
   onEditProfile,
+  onEditModal,
 }) {
   return (
     <div className="profile">
-      <SideBar onSignOut={onSignOut} onEditProfile={onEditProfile} />
+      <SideBar onSignOut={onSignOut} onEditModal={onEditModal} />
       <ClothesSection
         onSelectCard={onSelectCard}
         onCreateModal={onCreateModal}

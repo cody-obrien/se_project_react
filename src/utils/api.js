@@ -11,6 +11,7 @@ function postItem(item) {
     method: "POST",
     headers: {
       authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       name: item.name,
@@ -30,4 +31,15 @@ function deleteItem(id) {
   }).then(checkResponse);
 }
 
-export { getItems, postItem, deleteItem };
+function editProfile(data) {
+  const token = localStorage.getItem("jwt");
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ name: data.name, avatar: data.avatar }),
+  }).then(checkResponse);
+}
+
+export { getItems, postItem, deleteItem, editProfile };

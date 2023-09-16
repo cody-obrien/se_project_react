@@ -3,7 +3,7 @@ import "./SideBar.css";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function SideBar({ onSignOut, onEditProfile }) {
+export default function SideBar({ onSignOut, onEditModal }) {
   const userContext = useContext(CurrentUserContext);
   const userData = userContext
     ? userContext
@@ -28,7 +28,7 @@ export default function SideBar({ onSignOut, onEditProfile }) {
         <span className="sidebar__username">{userName}</span>
       </div>
       <div className="sidebar__buttons">
-        <button onClick={onEditProfile} className="sidebar__button">
+        <button onClick={onEditModal} className="sidebar__button">
           Change profile data
         </button>
         <button onClick={onSignOut} className="sidebar__button">

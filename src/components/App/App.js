@@ -12,7 +12,7 @@ import { Route, Switch } from "react-router-dom";
 // import { defaultClothingItems } from "../../utils/constants";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
-import { getItems, postItem, deleteItem } from "../../utils/api";
+import { getItems, postItem, deleteItem, editProfile } from "../../utils/api";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
 import EditProfileModal from "../EditProfileModal/EditProfileModal";
@@ -118,7 +118,15 @@ function App() {
     setCurrentUser(null);
   };
 
-  const handleEditProfile = () => {};
+  const handleEditProfile = (data) => {
+    editProfile({ name: data.name, avatar: data.avatar }).then((res) => {
+      setCurrentUser(res);
+    });
+  };
+
+  const handleEditModal = () => {
+    setActiveModal("edit");
+  };
 
   let weatherData = {};
 
@@ -194,6 +202,7 @@ function App() {
                   clothesList={clothingItems}
                   onSignOut={handleSignOut}
                   onEditProfile={handleEditProfile}
+                  onEditModal={handleEditModal}
                 />
               </Route>
             </ProtectedRoute>
@@ -225,7 +234,13 @@ function App() {
             />
           )}
 
-          <EditProfileModal></EditProfileModal>
+          {activeModal === "edit" && (
+            <EditProfileModal
+              onCloseModal={handleCloseModal}
+              onSubmit={handleEditProfile}
+            />
+          )}
+
           <Footer />
         </CurrentTemperatureUnitContext.Provider>
       </div>

@@ -31,7 +31,7 @@ export default function Main({ temperature, onSelectCard, clothesList }) {
   const weatherType = getWeatherType();
 
   const filteredCards = clothesList.filter((item) => {
-    return item.weather.toLowerCase() === weatherType;
+    return item.weather === weatherType;
   });
 
   return (

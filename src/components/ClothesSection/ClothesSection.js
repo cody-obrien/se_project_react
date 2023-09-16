@@ -12,7 +12,7 @@ export default function ClothesSection({
   const currentUser = useContext(CurrentUserContext);
   const userId = currentUser.user._id;
   const userClothes = clothesList.filter((item) => {
-    return item._id === userId;
+    return item.owner === userId;
   });
   return (
     <div className="clothes__section">

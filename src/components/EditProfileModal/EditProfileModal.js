@@ -1,10 +1,9 @@
 import "./EditProfileModal.css";
-import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext";
 import { useContext, useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-export default function EditProfileModal() {
+export default function EditProfileModal({ onCloseModal, onSubmit }) {
   const userContext = useContext(CurrentUserContext);
   const userData = userContext
     ? userContext
@@ -20,11 +19,16 @@ export default function EditProfileModal() {
   function handleChangeLink(e) {
     setLinkValue(e.target.value);
   }
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit({ name: nameValue, avatar: linkValue });
+    onCloseModal();
+  }
   return (
     <ModalWithForm
       title="Edit Profile"
-      //   onClose={onCloseModal}
-      //   onSubmit={handleSubmit}
+      onClose={onCloseModal}
+      onSubmit={handleSubmit}
     >
       <div className="modal__input-container">
         <label htmlFor="name">Name</label>
