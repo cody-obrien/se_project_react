@@ -121,7 +121,7 @@ function App() {
 
   const handleSignOut = () => {
     localStorage.removeItem("jwt");
-    setIsLoggedIn("false");
+    setIsLoggedIn(false);
     setCurrentUser(null);
   };
 
@@ -181,14 +181,14 @@ function App() {
   const handleLikeClick = ({ id, isLiked, user }) => {
     const token = localStorage.getItem("jwt");
     // Check if this card is now liked
-    isLiked
+    !isLiked
       ? // if so, send a request to add the user's id to the card's likes array
 
         // the first argument is the card's id
         addCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? updatedCard.item : c))
             );
           })
           .catch((err) => console.log(err))
@@ -198,7 +198,7 @@ function App() {
         removeCardLike(id, token)
           .then((updatedCard) => {
             setClothingItems((cards) =>
-              cards.map((c) => (c._id === id ? updatedCard : c))
+              cards.map((c) => (c._id === id ? updatedCard.item : c))
             );
           })
           .catch((err) => console.log(err));
