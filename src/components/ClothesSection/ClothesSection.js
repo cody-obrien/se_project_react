@@ -8,6 +8,7 @@ export default function ClothesSection({
   onSelectCard,
   onCreateModal,
   clothesList,
+  onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
   const userId = currentUser.user._id;
@@ -29,7 +30,12 @@ export default function ClothesSection({
       <div className="clothes__section-cards">
         {userClothes.map((item) => {
           return (
-            <ItemCard key={item._id} item={item} onSelectCard={onSelectCard} />
+            <ItemCard
+              key={item._id}
+              item={item}
+              onSelectCard={onSelectCard}
+              onCardLike={onCardLike}
+            />
           );
         })}
       </div>

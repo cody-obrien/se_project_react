@@ -10,6 +10,7 @@ export default function Profile({
   onSignOut,
   onEditProfile,
   onEditModal,
+  onCardLike,
 }) {
   return (
     <div className="profile">
@@ -19,6 +20,7 @@ export default function Profile({
         onCreateModal={onCreateModal}
         clothesList={clothesList}
         onDeleteCard={onDeleteCard}
+        onCardLike={onCardLike}
       />
     </div>
   );
