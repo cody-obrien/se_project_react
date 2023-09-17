@@ -2,8 +2,11 @@ import "./ItemModal.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useContext } from "react";
 export default function ItemModal({ card, onClose, onDelete }) {
-  const currentUser = useContext(CurrentUserContext);
-  const isOwn = card.owner === currentUser.user._id;
+  const userContext = useContext(CurrentUserContext);
+  const userData = userContext
+    ? userContext
+    : { user: { name: "", avatar: "" } };
+  const isOwn = card.owner === userData.user._id;
   const itemDeleteButtonClassName = `item__delete-button ${
     isOwn ? "item__delete-button_visible" : "item__delete-button_hidden"
   }`;
