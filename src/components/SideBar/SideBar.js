@@ -11,7 +11,7 @@ export default function SideBar({ onSignOut, onEditModal }) {
     : { user: { name: "", avatar: "" } };
   const userAvatarUrl = userData.user.avatar;
   const userName = userData.user.name;
-  const showUserAvatar = userAvatarUrl === "" ? true : false;
+  const showUserAvatar = userAvatarUrl !== "" ? true : false;
   const history = useHistory();
   const handleSignout = () => {
     onSignOut();

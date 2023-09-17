@@ -60,7 +60,7 @@ function App() {
   const handleAddItemSubmit = (newItem) => {
     postItem(newItem)
       .then((res) => {
-        setClothingItems([res, ...clothingItems]);
+        setClothingItems([res.item, ...clothingItems]);
       })
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
