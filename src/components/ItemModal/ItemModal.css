@@ -45,6 +45,8 @@
 
 .item-modal__image {
   width: 498px;
+  max-width: 498px;
+  max-height: 498px;
   border-radius: 10px;
   cursor: pointer;
 }

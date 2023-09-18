@@ -28,7 +28,6 @@ export default function RegisterModal({
   function handleSubmit(e) {
     e.preventDefault();
     onSubmit({ nameValue, avatarValue, emailValue, passwordValue });
-    onCloseModal();
   }
   return (
     <ModalWithForm

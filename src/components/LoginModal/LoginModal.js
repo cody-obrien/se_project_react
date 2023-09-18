@@ -19,7 +19,7 @@ export default function LoginModal({
 
   function handleSubmit(e) {
     e.preventDefault();
-    onCloseModal();
+
     onSubmit({ emailValue, passwordValue });
   }
 

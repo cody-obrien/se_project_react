@@ -6,16 +6,29 @@
 
 .card__name {
   text-align: center;
+  border-radius: 4px;
+  background-color: white;
+  padding: 2px 12px;
 }
 
 .card__image {
   width: 325px;
   height: 328px;
+  max-width: 325px;
+  max-height: 328px;
   border-radius: 10px;
   cursor: pointer;
 }
 .card__image-container {
   position: relative;
+}
+.card__header {
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  left: 35%;
+  top: 15px;
 }
 .card__items {
   display: flex;
@@ -26,9 +39,8 @@
 .card__like-button {
   border: none;
   background: none;
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .card__like-button-inactive {

@@ -22,7 +22,6 @@ export default function EditProfileModal({ onCloseModal, onSubmit }) {
   function handleSubmit(e) {
     e.preventDefault();
     onSubmit({ name: nameValue, avatar: linkValue });
-    onCloseModal();
   }
   return (
     <ModalWithForm

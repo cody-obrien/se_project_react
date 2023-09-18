@@ -21,11 +21,14 @@ export default function ItemCard({ item, onSelectCard, onCardLike }) {
 
   return (
     <div>
-      <div className="card__name">{item.name}</div>
       <div className="card__image-container">
-        <button className={likeButtonClassName} onClick={handleLikeClick}>
-          <img src={likeButtonPath} alt="Like Button" />
-        </button>
+        <div className="card__header">
+          <div className="card__name">{item.name}</div>
+          <button className={likeButtonClassName} onClick={handleLikeClick}>
+            <img src={likeButtonPath} alt="Like Button" />
+          </button>
+        </div>
+
         <img
           className="card__image"
           src={item.imageUrl}

@@ -62,6 +62,9 @@ function App() {
       .then((res) => {
         setClothingItems([res.item, ...clothingItems]);
       })
+      .then((res) => {
+        handleCloseModal();
+      })
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
       });
@@ -75,7 +78,9 @@ function App() {
             return item._id !== selectedCard._id;
           })
         );
-        setActiveModal("");
+      })
+      .then(() => {
+        handleCloseModal();
       })
       .catch((err) => {
         console.error("Error. The request has failed: ", err);
@@ -96,9 +101,9 @@ function App() {
     })
       .then((res) => {
         setCurrentUser(res);
-        signIn({ email: emailValue, password: passwordValue }).then((res) => {
-          localStorage.setItem("jwt", res.token);
-          setIsLoggedIn(true);
+        handleSignIn({
+          emailValue: emailValue,
+          passwordValue: passwordValue,
         });
       })
       .catch((err) => {
@@ -114,6 +119,9 @@ function App() {
 
         setIsLoggedIn(true);
       })
+      .then(() => {
+        handleCloseModal();
+      })
       .catch((err) => {
         console.error("Sign In failed: ", err);
       });
@@ -126,9 +134,16 @@ function App() {
   };
 
   const handleEditProfile = (data) => {
-    editProfile({ name: data.name, avatar: data.avatar }).then((res) => {
-      setCurrentUser(res);
-    });
+    editProfile({ name: data.name, avatar: data.avatar })
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .then(() => {
+        handleCloseModal();
+      })
+      .catch((err) => {
+        console.error("Error editing profile:", err);
+      });
   };
 
   const handleEditModal = () => {

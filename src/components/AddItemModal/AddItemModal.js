@@ -29,7 +29,6 @@ export default function AddItemModal({ isOpen, onCloseModal, onAddItem }) {
       imageUrl: linkValue,
       weather: weatherValue,
     });
-    onCloseModal();
   }
   return (
     <ModalWithForm
