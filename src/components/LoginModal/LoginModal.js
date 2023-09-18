@@ -28,6 +28,10 @@ export default function LoginModal({
       title="Sign In"
       onClose={onCloseModal}
       onSubmit={handleSubmit}
+      buttonText="Login"
+      hasRedirectButton={true}
+      redirectButtonText="or Register"
+      redirectButtonClick={onRegisterModal}
     >
       <div className="modal__input-container">
         <label htmlFor="name">Email</label>
@@ -50,15 +54,6 @@ export default function LoginModal({
           placeholder="Password"
           value={passwordValue}
         />
-      </div>
-
-      <div className="modal__button-container">
-        <button className="modal__submit-button" type="submit">
-          Next
-        </button>
-        <button className="modal__redirect-button" onClick={onRegisterModal}>
-          or Register
-        </button>
       </div>
     </ModalWithForm>
   );

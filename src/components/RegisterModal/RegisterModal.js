@@ -34,6 +34,10 @@ export default function RegisterModal({
       title="Sign Up"
       onClose={onCloseModal}
       onSubmit={handleSubmit}
+      buttonText="Register"
+      hasRedirectButton={true}
+      redirectButtonText="or Login"
+      redirectButtonClick={onLoginModal}
     >
       <div className="modal__input-container">
         <label htmlFor="name">Email</label>
@@ -78,14 +82,6 @@ export default function RegisterModal({
           placeholder="Avatar URL"
           value={avatarValue}
         />
-      </div>
-      <div className="modal__button-container">
-        <button className="modal__submit-button" type="submit">
-          Next
-        </button>
-        <button className="modal__redirect-button" onClick={onLoginModal}>
-          or Login
-        </button>
       </div>
     </ModalWithForm>
   );

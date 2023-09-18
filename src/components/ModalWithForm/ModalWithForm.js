@@ -2,10 +2,13 @@ import "./ModalWithForm.css";
 export default function ModalWithForm({
   title,
   name,
-  // buttonText,
+  buttonText,
   children,
   onClose,
   onSubmit,
+  hasRedirectButton,
+  redirectButtonText,
+  redirectButtonClick,
 }) {
   return (
     <div className={`modal modal_type_${name}`}>
@@ -18,9 +21,19 @@ export default function ModalWithForm({
         <h3>{title}</h3>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          {/* <button className="modal__submit-button" type="submit">
-            {buttonText}
-          </button> */}
+          <div className="modal__button-container">
+            <button className="modal__submit-button" type="submit">
+              {buttonText}
+            </button>
+            {hasRedirectButton && (
+              <button
+                className="modal__redirect-button"
+                onClick={redirectButtonClick}
+              >
+                {redirectButtonText}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>
