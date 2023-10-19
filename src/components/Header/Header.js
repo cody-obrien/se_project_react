@@ -19,7 +19,7 @@ export default function Header({
     ? userContext
     : { user: { name: "", avatar: "" } };
   const userAvatarUrl = userData.user ? userData.user.avatar : userData.avatar;
-  const userName = userData.user.name;
+  const userName = userData.user ? userData.user.name : userData.name;
 
   return (
     <header className="header">
