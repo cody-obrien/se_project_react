@@ -102,7 +102,7 @@ const longitude = -71.058884;
 // "https://my-json-server.typicode.com/cody-obrien/se_project_react";
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "api.secowtwr.csproject.org"
+    ? "https://api.secowtwr.csproject.org"
     : "http://localhost:3001";
 
 export {
